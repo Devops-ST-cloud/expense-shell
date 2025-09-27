@@ -41,3 +41,10 @@ VALIDATE $? "starting MySql Server"
 mysql_secure_installation --set-root-pass ExpenseApp@1 &>>$LOGFILE
 VALIDATE $? "setting up root password"
 
+#below code is useful for idempotent nature
+#mysql -h 
+
+
+
+
+
