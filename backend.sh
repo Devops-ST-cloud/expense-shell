@@ -29,17 +29,21 @@ VALIDATE(){
    fi     
 }
 
-dnf install mysql-server -y &>>$LOGFILE
-VALIDATE $? "Installing MySql Server"
+dnf module disable nodejs -y &>>LOGFILE
+VALIDATE $? "Diabling default nodejs"
 
-systemctl enable mysqld &>>$LOGFILE
-VALIDATE $? "Enabling MySql Server"
+dnf module enable nodejs -y &>>LOGFILE
+VALIDATE $? "enabling default nodejs :: 20 version"
 
-systemctl start mysqld &>>$LOGFILE
-VALIDATE $? "starting MySql Server"
+dnf install nodejs -y &>>LOGFILE
+VALIDATE $? "Installing nodejs"
 
-mysql_secure_installation --set-root-pass ExpenseApp@1 &>>$LOGFILE
-VALIDATE $? "setting up root password"
+useradd expense
+VALIDATE $? "Creating expense user"
+
+
+
+
 
 
 
